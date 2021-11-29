@@ -3,12 +3,14 @@ import { getDataloading, getDatasuccess, getDatafailure} from "../redux/dataRedu
 import {useEffect} from "react"
 import axios from "axios"
 export default function Movies(){
-    const {loading,error,data} = useSelector(state=>state);
-    console.log(data)
+    const {loading,error} = useSelector(state=>state);
+    const x = useSelector(state=>state.data);
+    console.log(x)
     const dispatch = useDispatch()
     useEffect(()=>{
         getData()
     },[])
+    let arr = [1,2,3,4,5] 
     async function getData(){
         dispatch(getDataloading())
         try{
@@ -21,12 +23,8 @@ export default function Movies(){
     }
     return(
         <>
-       {loading?<h1>Loading...</h1>:data.map((e)=>{return(
-           <div>
-           <img src={e.Poster} alt=""/>
-           <h1 style={{color:"black"}}>{e.Title}</h1>
-           </div>
-           )})}
+        <div>{x.map((e)=>{console.log(<div><h1>{e.Title}</h1></div>)})}</div>
+       {loading?<div><h1>Loading...</h1></div>:x.map((e)=>{return(<div><h1>{e.Title}</h1></div>)})}
         </>
     )
 }
