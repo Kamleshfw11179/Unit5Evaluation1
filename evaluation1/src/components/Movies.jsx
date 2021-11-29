@@ -2,15 +2,15 @@ import { useDispatch, useSelector } from "react-redux"
 import { getDataloading, getDatasuccess, getDatafailure} from "../redux/dataReducer/action"
 import {useEffect} from "react"
 import axios from "axios"
+import {Link} from "react-router-dom"
 export default function Movies(){
-    const {loading,error} = useSelector(state=>state);
-    const x = useSelector(state=>state.data);
-    console.log(x)
     const dispatch = useDispatch()
     useEffect(()=>{
         getData()
     },[])
-    let arr = [1,2,3,4,5] 
+  
+    const {loading,error,data} = useSelector(state=>state);
+    console.log(data)
     async function getData(){
         dispatch(getDataloading())
         try{
@@ -23,8 +23,21 @@ export default function Movies(){
     }
     return(
         <>
-        <div>{x.map((e)=>{console.log(<div><h1>{e.Title}</h1></div>)})}</div>
-       {loading?<div><h1>Loading...</h1></div>:x.map((e)=>{return(<div><h1>{e.Title}</h1></div>)})}
+        <div>
+        {loading?<h1>Loading...</h1>:
+        <div>
+        {data.map((e)=>{
+            console.log(e)
+            return(
+                <Link to={`/movie/${e.imdbID}`}>
+                <img src={e.Poster} alt=""/>
+                <h1>{e.Title}</h1>
+                </Link>
+            )
+        })}
+        </div>
+        }
+        </div>
         </>
     )
 }
