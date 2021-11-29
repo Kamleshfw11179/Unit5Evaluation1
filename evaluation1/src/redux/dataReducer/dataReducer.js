@@ -22,10 +22,9 @@ function dataReducer(state=init,{type,payload}){
         }
         case GET_DATA_SUCCESS:{
             return{
+                ...state,
                 loading:false,
-                data:payload,
-                userData:[],
-                error:false
+                data:[...state.data,payload]
             }
         }
         case GET_DATA_FAILURE:{
@@ -33,7 +32,7 @@ function dataReducer(state=init,{type,payload}){
                 loading:false,
                 data:[],
                 userData:[],
-                error:true
+                error:payload
             }
         }
         case ADD_DATA_LOADING:{

@@ -1,4 +1,4 @@
-import {GET_DATA_FAILURE,GET_DATA_LODING,GET_DATA_SUCCESS,ADD_DATA_FAILURE,ADD_DATA_SUCCESS,ADD_DATA_LODING} from "./actionTypes"
+import {GET_DATA_FAILURE,GET_DATA_LODING,GET_DATA_SUCCESS,ADD_DATA_FAILURE,ADD_DATA_SUCCESS,ADD_DATA_LOADING} from "./actionTypes"
 
 
 function getDataloading(data){
@@ -21,7 +21,7 @@ function getDatafailure(data){
 }
 function addDataloading(data){
     return{
-        type:ADD_DATA_LODING,
+        type:ADD_DATA_LOADING,
         payload:data
     }
 }
