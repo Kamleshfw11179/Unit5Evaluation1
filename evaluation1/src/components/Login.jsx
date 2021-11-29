@@ -3,6 +3,7 @@ import {useState} from "react"
 import { useContext } from "react";
 import { AuthContext } from "../Authcontext/Authcontext";
 import axios from "axios"
+import { Navigate } from "react-router";
 export default function Login(){
     const {setToken} = useContext(AuthContext);
     const [user,setUser] = useState({
@@ -19,7 +20,7 @@ export default function Login(){
     async function login(){
         try{
             let res = await axios.post("https://reqres.in/api/login",user);
-            setToken(res.data.token)
+            setToken(res.data.token);
         }catch(err){
             console.log(err)
         }
